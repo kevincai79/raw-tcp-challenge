@@ -7,16 +7,18 @@ require 'socket'
 
 server_connection = TCPSocket.new('127.0.0.1', 2000)
 
-your_message = ARGV.join(" ")
+our_name = ARGV.join(" ")
 
-#Send our message to the server
-server_connection.puts(your_message)
+puts "Sending a message to the server: #{our_name}"
+#Send our message to the server:
+server_connection.puts(our_name)
 
-#Get whatever the server sends back to us
+puts "Waiting for a message...\n\n"
+#Wait around for a response from the server:
 response_from_server = server_connection.gets
 
 #Print our the server's response to our screen
-puts response_from_server
+puts "Message from the server: #{response_from_server}"
 
-#Close the connection if we're done
+#Close the connection, we're done!
 server_connection.close
