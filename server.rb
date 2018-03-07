@@ -5,6 +5,16 @@ require 'socket'
 # exchanges information with the client
 server = TCPServer.new(2000) # Start a server that's bound to port 2000 of this machine
 
+def cheering_mascot(str)
+  case str
+  when 'RED HOT' then 'H-O-T!'
+  when 'DO IT AGAIN' then 'Go, Fight, Win'
+  when '2 BITS' then 'Holler!'
+  when 'STOMP YOUR FEET' then 'STOMP!'
+  else 'GO GO!'
+  end
+end
+
 loop do
   puts "Server waiting for a new connection..."
   # `server.accept` causes our program to pause here for a client to connect.
@@ -26,7 +36,7 @@ loop do
   name_from_client = name_from_client.chomp
 
   # Now that we got a message from the client, let's send a response
-  client_connection.puts("We got your message! Hello #{name_from_client}!")
+  client_connection.puts(cheering_mascot(name_from_client))
 
   # We're done, so let's close the client connection
   client_connection.close
